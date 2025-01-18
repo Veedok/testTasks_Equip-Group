@@ -1,9 +1,10 @@
 # Используем официальный образ PHP с поддержкой Apache
-FROM php:8.4-apache
+FROM php:8.3-apache
 
 # Устанавливаем необходимые расширения PHP
 RUN apt-get update && apt-get install -y \
     libpng-dev \
+    mc \
     libjpeg-dev \
     libfreetype6-dev \
     libzip-dev \
@@ -15,7 +16,8 @@ RUN apt-get update && apt-get install -y \
 
 # Устанавливаем Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug
 # Копируем код приложения в контейнер
 COPY app /var/www/html
 
@@ -36,3 +38,4 @@ RUN a2enmod rewrite
 
 # Открываем порт 80
 EXPOSE 80
+EXPOSE 3306
