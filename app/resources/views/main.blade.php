@@ -10,20 +10,24 @@
     <link rel="stylesheet" type="text/css" href="../storage/main.css">
 </head>
 <body>
+
 <div class="header"></div>
 <div class="wraper">
-    <div class="menu">
-        @foreach($menuItems as $item)
-            {!! $item['body'] !!}
-        @endforeach
-    </div>
-    <div class="content">
-        <h1> Veedok</h1>
-    </div>
-
+{!! $menu !!}
+{!! $table !!}
 </div>
 
+<script>
+    let list = document.getElementsByTagName('button');
 
+    function showThis(target){
+        var index;
+        for(var i=0;i<list.length;i++){
+            if(list[i] === target) index = i;
+        }
+        console.log(target + index + 'clicked');
+    }
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

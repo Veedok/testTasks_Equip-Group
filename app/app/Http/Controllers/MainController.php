@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 
 use App\Service\Show;
 
-class MenuController extends Controller
+class MainController extends Controller
 {
-    public function showAll()
+    public function start()
     {
         return Show::getInstanse()->start();
     }

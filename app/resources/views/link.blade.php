@@ -1,2 +1,2 @@
 {{--<a href="{{$item['id']}}"></a>--}}
-<li><button class="dropdown-item" type="button"><span>{{$item['name']}}</span><span> ({{$item['count']}}) </span></button></li>
+<li><button style="white-space: pre-wrap;" class="dropdown-item" type="button">{{$item['name']}} ({{$item['count']}}) </button></li>

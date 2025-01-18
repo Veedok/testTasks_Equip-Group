@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\MenuController;
+use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [MenuController::class, 'showAll']);
+Route::get('/', [MainController::class, 'start']);

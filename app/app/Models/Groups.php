@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Menu extends Model
+class Groups extends Model
 {
     protected $table = 'groups';
 }
