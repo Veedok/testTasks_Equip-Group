@@ -12,7 +12,10 @@ RUN apt-get update && apt-get install -y \
     git \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd \
+    && docker-php-ext-install pdo pdo_mysql \
     && docker-php-ext-install zip
+
+
 
 # Устанавливаем Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -26,7 +29,6 @@ WORKDIR /var/www/html
 
 # Устанавливаем зависимости Laravel
 RUN #composer install
-
 # Устанавливаем права доступа
 RUN #chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
@@ -38,4 +40,3 @@ RUN a2enmod rewrite
 
 # Открываем порт 80
 EXPOSE 80
-EXPOSE 3306
