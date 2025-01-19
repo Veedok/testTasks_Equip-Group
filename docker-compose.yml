@@ -10,10 +10,16 @@ services:
     volumes:
       - ./app:/var/www/html
       - ./conf/000-default.conf:/etc/apache2/sites-available/000-default.conf
+      - ./conf/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-gd.ini
+      - ./conf/php.ini-development:/usr/local/etc/php/php.ini-development
     depends_on:
       - db
     networks:
       - laravel-network
+    restart: always
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
 
   db:
     image: mysql:5.7
@@ -28,6 +34,8 @@ services:
       - db_data:/var/lib/mysql
     networks:
       - laravel-network
+    ports:
+      - "3306:3306"
 
 networks:
   laravel-network:

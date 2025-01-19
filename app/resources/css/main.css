@@ -1,0 +1,39 @@
+.header {
+    width: 100%;
+    background-color: #0b5ed7;
+    min-height: 100px;
+}
+.wraper {
+    max-width: 1500px;
+    width: 100%;
+    background: none;
+    display: flex;
+    margin: 0 auto;
+}
+.menu {
+    width: 400px;
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+}
+.content {
+    width: 100%;
+    margin: 30px;
+}
+.num{
+    width: 10%;
+}
+.text{
+    width: 75%;
+}
+.price{
+    width: 15%;
+}
+
+.selected {
+    font-weight: bolder;
+    background-color: #A0A0A0;
+}
+svg {
+    width: 50px;
+}
