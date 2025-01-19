@@ -10,10 +10,11 @@ RUN apt-get update && apt-get install -y \
     unzip \
     git \
     mc \
-    npm \
+    npm  \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd \
-    && docker-php-ext-install zip
+    && docker-php-ext-install zip \
+    && docker-php-ext-install pdo pdo_mysql
 
 
 
@@ -28,7 +29,7 @@ COPY app /var/www/html
 WORKDIR /var/www/html
 
 # Устанавливаем зависимости Laravel
-RUN #composer install
+RUN composer install
 # Устанавливаем права доступа
 RUN #chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 

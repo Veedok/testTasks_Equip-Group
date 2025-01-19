@@ -2,11 +2,20 @@
 
 namespace App\Service;
 
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+
 class Show
 {
-    private static $instances;
+    /** @var Show Инстанс  */
+    private static Show $instances;
 
-    public static function getInstanse()
+    /**
+     * Инстанс объекта
+     * @return Show|static
+     */
+    public static function getInstanse(): Show|static
     {
         if (!isset(self::$instances)) {
             self::$instances = new static;
@@ -14,11 +23,16 @@ class Show
         return self::$instances;
     }
 
-    public function start()
+    /**
+     * Отображение стартовой страницы
+     * @return View|Factory|Application
+     */
+    public function start(): View|Factory|Application
     {
         return view('main', [
             'menu' => Menu::getInstanse()->getMenu(),
-            'table' => Table::getInstanse()->getTable()
+            'table' => Table::getInstanse()->getTable(),
+            'paginator' => Paginator::getInstanse()->getPagination()?->toHtml()
         ]);
     }
 

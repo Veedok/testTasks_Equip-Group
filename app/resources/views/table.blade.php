@@ -1,4 +1,4 @@
-<div class="content">
+
     <input type="hidden" id="data">
     <table id="table" class="table table-striped table-info">
         <thead>
@@ -9,7 +9,7 @@
         </tr>
         </thead>
         <tbody id="tBody">
-        @foreach($content['rows'] as $key => $row)
+        @foreach($rows as $key => $row)
             <tr>
                 <th class="num" scope="row">{{$key + 1}}</th>
                 <td class="text" >{{$row->name}}</td>
@@ -18,5 +18,4 @@
         @endforeach
         </tbody>
     </table>
-    {!! $content['paginator']->toHtml() !!}
-</div>
+

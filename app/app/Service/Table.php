@@ -7,9 +7,14 @@ use Illuminate\Support\Facades\DB;
 
 class Table
 {
+    /** @var Table Инстанс  */
     private static $instances;
 
-    public static function getInstanse()
+    /**
+     * Инстанс объекта
+     * @return Table|static
+     */
+    public static function getInstanse(): Table|static
     {
         if (!isset(self::$instances)) {
             self::$instances = new static;
@@ -17,12 +22,21 @@ class Table
         return self::$instances;
     }
 
-    public function getTable($id = null)
+    /**
+     * Возврашает HTML таблицы
+     * @return string
+     */
+    public function getTable(): string
     {
-        return view('table', ['content' => $this->getRows()])->toHtml();
+        return view('table', ['rows' => $this->getRows()])->toHtml();
     }
 
-    public function getRows($params = [])
+    /**
+     * Возвращает массив строк таблицы в зависимости от параметров
+     * @param array $params Параметры запроса
+     * @return array
+     */
+    public function getRows(array $params = []): array
     {
         $query = DB::table('products')
             ->join('prices', 'products.id', '=', 'prices.id_product')
@@ -37,14 +51,9 @@ class Table
             } elseif (!empty($params['sortRow']) && !empty($params['sort'])) {
                 $query->orderBy($params['sortRow'], 'desc');
             }
-
         }
-        $paginator = $query->paginate(10);
+        Paginator::getInstanse()->setPagination($query->paginate(10));
         $rows = $query->get();
-
-        return [
-            'rows' => $rows->toArray(),
-            'paginator' => $paginator
-        ];
+        return  $rows->toArray();
     }
 }
