@@ -4,15 +4,15 @@ FROM php:8.3-apache
 # Устанавливаем необходимые расширения PHP
 RUN apt-get update && apt-get install -y \
     libpng-dev \
-    mc \
     libjpeg-dev \
     libfreetype6-dev \
     libzip-dev \
     unzip \
     git \
+    mc \
+    npm \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd \
-    && docker-php-ext-install pdo pdo_mysql \
     && docker-php-ext-install zip
 
 
