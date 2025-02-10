@@ -1,5 +1,8 @@
 # Equip-Group
 
+[Задача](./Task.md)
+
+
 Переименовать и настроить .env
 ```markdown
 DB_CONNECTION=mysql
